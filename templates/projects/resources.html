@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <title>{% block title %}Título de la página{% endblock %}</title>
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/base_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/projects/resources_style.css' %}" />
+    {% endblock %}
+  </head>
+  <body>
+    <div class="main-title">
+      <h1>Recursos</h1>
+    </div>
+
+    <ul>
+    {% for resource in resources %}
+        <li>
+            {{ resource.name }}
+            <a href="#">edit</a>
+            <a href="#">delete</a>
+        </li>
+    {% empty %}
+        <li>No resources found.</li>
+    {% endfor %}
+    </ul>
+    <a href="{% url 'resources-create' %}">Add a new Resource</a>
+
+
+  </body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,154 @@
+.back-btn {
+  height: 10%;
+  width: 100%;
+  min-width: 550px;
+  display: flex;
+  padding-top: 20px;
+  padding-left: 20px;
+  align-items: center;
+}
+
+.back-btn i {
+  font-size: 35px;
+  color: white;
+  line-height: 80px;
+}
+
+.back-btn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  border-radius: 10px;
+  height: 50px;
+  border-right: solid 2px #b33b00;
+  border-bottom: solid 2px #b33b00;
+  background-color: #ff7733;
+  color: #fff;
+}
+
+.back-btn a:hover {
+  cursor: pointer;
+  border-right: none;
+  border-bottom: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 100%;
+}
+
+.search-bar {
+  margin-left: 75%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+.search-bar input {
+  outline: none;
+  box-sizing: border-box;
+  height: 60px;
+  width: 0px;
+  padding: 0 20px;
+  color: #001011;
+  border-radius: 30px;
+  font-size: 1.5rem;
+  border: 2px solid #ff7733;
+  transition: all 0.6s ease;
+}
+
+.search-bar .btn {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 80px;
+  height: 80px;
+  background: #ff7733;
+  line-height: 80px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.search-bar .btn i {
+  font-size: 25px;
+  color: white;
+  line-height: 80px;
+  transition: all 0.7s ease;
+}
+
+.search-bar:hover input {
+  width: 75vw;
+}
+
+.search-bar:hover i {
+  transform: rotate(-360deg);
+}
+
+.search-bar .btn:hover {
+  background: #ff7700;
+}
+
+.main-container .content h2 {
+  font-size: 3rem;
+  color: #001011;
+  font-weight: bolder;
+}
+
+.content .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+  grid-template-rows: auto;
+  grid-auto-flow: dense;
+  gap: 1rem;
+  width: 90%;
+  margin-top: 3%;
+  min-width: 550px;
+}
+
+.content .grid::-webkit-scrollbar {
+  display: none;
+}
+.content .grid .category-item {
+  padding: 1rem;
+  display: flex;
+  border: solid 1px #00101150;
+  border-radius: 15px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: all 0.2s ease;
+}
+
+.content .grid .category-item:hover {
+  overflow: hidden;
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.content .grid .category-item .img {
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.content .grid .category-item h4 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  font-weight: bolder;
+}
+
+@media screen and (max-width: 836px) {
+  .content .grid {
+    overflow: scroll;
+    height: 90%;
+  }
+}

@@ -1,0 +1,191 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+/*---------------------------------------Registration---------------------------*/
+.main-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.main-container .form-container {
+  display: flex;
+  width: 50%;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.main-container .signup-container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.main-container .signup-container > h2 {
+  color: #001010;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.main-container .signup-container label {
+  color: #001010;
+  display: block;
+  font-size: small;
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+input[type="date"] {
+  background: url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
+    97% 50% no-repeat;
+}
+
+input[type="date"]:hover {
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+input {
+  margin-bottom: 5px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+  border-bottom: solid 1px #aaaaaa;
+}
+
+.main-container .signup-container input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+  border-bottom: solid 1px #aaaaaa;
+}
+
+.main-container .signup-container input::placeholder {
+  color: #00101050;
+}
+
+.main-container .signup-container input:focus {
+  outline: none;
+  border-bottom: solid 2px #001010;
+}
+
+.main-container .signup-container .options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.main-container .signup-container .options .btn {
+  margin-top: 20px;
+  border: none;
+  padding: 12px 0;
+  width: 40%;
+  font-weight: bolder;
+  display: block;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.main-container .signup-container .options .btn.btn-signup {
+  background-color: #001010;
+  color: #98ce00;
+}
+
+.main-container .signup-container .options .btn.btn-signup:hover {
+  background-color: #202424;
+}
+
+.main-container .signup-container .options .btn.btn-cancel {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+.main-container .signup-container .options .btn.btn-cancel:hover {
+  background-color: #ff2222;
+}
+
+.main-container .welcome-screen-container {
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  width: 50%;
+  background-color: #001011;
+}
+
+.main-container .welcome-screen-container > h1 {
+  color: #98ce00;
+  font-size: 2.5rem;
+}
+
+.main-container .welcome-screen-container > p {
+  color: white;
+  font-size: 14px;
+  margin-top: 10px;
+  letter-spacing: 0.07em;
+}
+
+@media screen and (max-width: 1366px) {
+  .main-container .signup-container {
+    width: 400px;
+    margin: 0 auto;
+  }
+
+  .main-container .form-container {
+    width: 55%;
+  }
+
+  .main-container .welcome-screen-container {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+  }
+
+  .main-container .form-container {
+    width: 90%;
+  }
+
+  .main-container .welcome-screen-container {
+    display: none;
+  }
+}

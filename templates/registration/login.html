@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <title>{% block title %}Título de la página{% endblock %}</title>
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/base_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/registration/login_style.css' %}" />
+    {% endblock %}
+  </head>
+  <body>
+    <div class="login-wrapper">
+      <div class="content-container">
+        <div class="login-container">
+          <h2>Iniciar Sesión</h2>
+          <div class="form-container">
+            <form method="POST">
+              {% csrf_token %}
+              <p>
+                <input
+                  type="text"
+                  class="input"
+                  id="username"
+                  name="username"
+                  placeholder="Usuario (Cédula)"
+                />
+              </p>
+              <p>
+                <input
+                  type="password"
+                  class="input"
+                  id="password"
+                  name="password"
+                  placeholder="Contraseña"
+                />
+              </p>
+                </div>
+                <div class="submit-button">
+                <button type="submit">Ingresar</button>
+                </div>
+            </form>
+          <div class="support-container">
+            <a href="#" id="forgot-pass">¿Olvidaste la contraseña?</a>
+            <a href="/users/registration" id="register">¿No tienes una cuenta? Regístrate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

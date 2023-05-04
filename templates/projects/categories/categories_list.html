@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/base_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/projects/crud.css' %}" />
+    {% endblock %}
+  </head>
+  <body>
+    <div class="main-title">
+      <h1>Categorías de Proyectos</h1>
+    </div>
+
+
+    <a class="btn new-item" href="{% url 'categories-create' %}">Nueva Categoria
+      <img src="{% static 'img/plus.png' %}" class="plus-symbol">
+    </a>
+    <table>
+      <tr>
+        <th>id</th>
+        <th>Nombre</th>
+        <th>Foto</th>
+        <th>Acciones</th>
+      </tr>
+    {% for category in categories %}
+        
+        <tr>
+
+            <td>{{ category.id_category }}</td>
+            <td>{{ category.name }}</td>
+            <td><img src="../../../{{ category.photo }}" alt="{{ category.name }}"  height="100" width="100"></td>
+            <td><a class="btn edit" href="{% url 'categories-update' category.pk %}"><i class="fa-solid fa-pen-to-square"></i></a><a class="btn delete" href="{% url 'categories-delete' category.pk %}" ><i class="fa-solid fa-trash"></i></a></td>
+            
+        </tr>
+    {% empty %}
+        <li>No categories found.</li>
+    {% endfor %}
+    </table>
+    
+
+  </body>
+</html>
+
+
+
+{% endblock %}
+
+

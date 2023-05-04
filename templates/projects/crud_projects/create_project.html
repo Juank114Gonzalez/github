@@ -1,0 +1,115 @@
+{% extends 'base.html' %} {% block content %} {% load static %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>{% block title %}Título de la página{% endblock %}</title>
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/base_style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/projects/createproject.css' %}"
+    />
+    {% endblock %}
+  </head>
+  <body>
+    <div class="main-container">
+      
+      <div class="content">
+        <div class="welcome-screen-container">
+          <div class="message">
+            <h2>NUEVA PROPUESTA</h2>
+            <p>Propón un nuevo proyecto y empieza a hacer tu sueño realidad</p>
+          </div>
+        </div>
+        <div class="form-container">
+          <h2>NUEVA PROPUESTA</h2>
+          <div class="signup-container">
+            <form id="formulario" class="form" method="POST">
+              {% csrf_token %}
+              <p>
+                <label for="title">TÍTULO DEL PROYECTO</label>
+                <input
+                  class="input"
+                  placeholder="Ingresa el título del proyecto que vas a empezar"
+                  type="text"
+                  name="title"
+                  id="fullname"
+                />
+              </p>
+              <label for="format">CATEGORÍA</label>
+              <div class="select">
+                <select name="format" id="format" required>
+                  <option selected disabled>Selecciona una categoría</option>
+                  {% for category in categories %}
+                  <option name="category" value="{{category.id_category}}">{{category.name}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <p>
+                <label for="objetive">OBJETIVO DEL PROYECTO</label>
+                <textarea
+                  class="input"
+                  placeholder="Escribe un texto con el objetivo general del proyecto"
+                  type="text"
+                  name="objetive"
+                  id="fullname"
+                ></textarea>
+              </p>
+              <p>
+                <label for="results">RESULTADO ESPERADO DE PROYECTO</label>
+                <textarea
+                  class="input"
+                  placeholder="Escribe un texto sobre el resultado esperado del proyecto"
+                  type="text"
+                  name="results"
+                  id="fullname"
+                ></textarea>
+              </p>
+              <p>
+                <label for="reach">ALCANCE DE PROYECTO</label>
+                <textarea
+                  class="input"
+                  placeholder="Ingresa un texto sobre el alcance de tu proyecto"
+                  type="text"
+                  name="reach"
+                  id="fullname"
+                ></textarea>
+              </p>
+            </form>
+            <div class="options">
+              <button id="next" type="button" class="btn btn-next">
+                Siguiente
+              </button>
+              <script>
+                var btnTerminar = document.getElementById("next");
+                var miFormulario = document.getElementById("formulario");
+
+                btnTerminar.addEventListener("click", function () {
+                  miFormulario.submit();
+                });
+              </script>
+              <button id="cancelar" class="btn btn-cancel">Cancelar</button>
+              <script>
+                document
+                  .getElementById("cancelar")
+                  .addEventListener("click", function () {
+                    window.history.back();
+                  });
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

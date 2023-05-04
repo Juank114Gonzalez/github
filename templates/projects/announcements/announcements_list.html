@@ -1,0 +1,106 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <title>{% block title %}Título de la página{% endblock %}</title>
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/base_style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/projects/announcement_style.css' %}"
+    />
+    {% endblock %}
+  </head>
+  <body>
+    
+    <form method="get">
+      <label for="category">Filtrar por categoría:</label>
+      <select name="category" id="category">
+        <option value="">Todas las categorías</option>
+        {% for category in categories %}
+          <option value="{{ category.id_category }}" {% if category.id_category|stringformat:"s" == request.GET.category %}selected{% endif %}>{{ category.name }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">Filtrar</button>
+    </form>
+
+    <h1>Categorías de Convocatorias</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Fecha de inicio</th>
+        <th>Fecha de finalización</th>
+        <th>Categoría</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for announcement in announcements %}
+        <tr>
+          <td>{{ announcement.id_announ }}</td>
+          <td>{{ announcement.init_date }}</td>
+          <td>{{ announcement.end_date }}</td>
+          <td>{{ announcement.category }}</td>
+          <td>
+            <a href="{% url 'announcements-update' announcement.id_announ %}">Editar</a>
+            <a href="{% url 'announcements-delete' announcement.id_announ %}">Eliminar</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No hay anuncios disponibles.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'announcements-create' %}">Crear nuevo anuncio</a>
+
+
+
+    <div class="content">
+      <div class="search-bar">
+        <input type="text" placeholder="Buscar la categoría" />
+        <div class="btn">
+          <i class="fa fa-search"></i>
+        </div>
+      </div>
+      <h2>Convocatorias</h2>
+      <div class="grid">
+        <div class="category-item">
+          <img class="img" src="{% static 'img/announcement_imgs/tecnologia.png' %}" />
+          <h4>Tecnología</h4>
+        </div>
+        <div class="category-item">
+          <img class="img" src="{% static 'img/announcement_imgs/videojuegos.png' %}" />
+          <h4>Videojuegos</h4>
+        </div>
+        <div class="category-item">
+          <img class="img" src="{% static 'img/announcement_imgs/sociedad.png' %}" />
+          <h4>Sociedad</h4>
+        </div>
+        <div class="category-item">
+          <img class="img" src="{% static 'img/announcement_imgs/agronomia.png' %}" />
+          <h4>Agronomía</h4>
+        </div>
+        <div class="category-item">
+          <img class="img" src="{% static 'img/announcement_imgs/educacion.png' %}" />
+          <h4>Educación</h4>
+        </div>
+        <div class="category-item">
+          <img class="img" src="{% static 'img/announcement_imgs/salud.png' %}" />
+          <h4>Salud</h4>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+{% endblock %}

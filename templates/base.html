@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/logo.ico' %}"/>
+    <title>{% block title %}{{ page_name }}{% endblock %}</title>
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/base_style.css' %}" />
+    {% endblock %}
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <a class="logout-btn" href="{% url 'logout' %}">Salir</a>
+
+        <input type="checkbox" id="check" />
+        <label for="check" class="checkbtn">
+          <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">Knowledge Project</label>
+        <ul>
+          {% if user_role ==  'page_manager' %}
+            {% if page_name == 'resources' or page_name == 'categories' %}
+            <li class=""><a class="" href="/">Home</a></li>
+              {% if page_name == 'resources' %}
+                <li class="active"><a class="active" href="#">Gestionar Recursos</a></li>
+              {% endif %}
+              {% if page_name == 'categories' %}
+                <li class="active"><a class="active" href="#">Gestionar Categorias</a></li>
+              {% endif %}
+            
+            {% else %}
+              <li class="{% if page_name == 'home' %}active{% endif %}"><a class="{% if page_name == 'home' %}active{% endif %}" href="/">Home</a></li>
+              <li class="{% if page_name == 'users' %}active{% endif %}"><a class="{% if page_name == 'users' %}active{% endif %}" href="#">Usuarios</a></li>
+              <li class="{% if page_name == 'announcement' %}active{% endif %}"><a class="{% if page_name == 'announcement' %}active{% endif %}" href="{% url 'announcements-list' %}">Convocatorias</a></li>
+              <li class="{% if page_name == 'companies' %}active{% endif %}"><a class="{% if page_name == 'companies' %}active{% endif %}" href="#">Empresas</a></li>
+            {% endif %}
+          {% elif user_role ==  'common_user' %}
+            <li class="{% if page_name == 'home' %}active{% endif %}"><a class="{% if page_name == 'home' %}active{% endif %}" href="/">Home</a></li>
+            <li class="{% if page_name == 'announcement' %}active{% endif %}"><a class="{% if page_name == 'announcement' %}active{% endif %}" href="#">Convocatorias</a></li>
+            <li class="{% if page_name == 'donnations' %}active{% endif %}"><a class="{% if page_name == 'donnations' %}active{% endif %}" href="#">Donaciones</a></li>
+            <li class="{% if page_name == 'company' %}active{% endif %}"><a class="{% if page_name == 'company' %}active{% endif %}" href="#">Empresa</a></li>
+          
+          {% elif user_role ==  'company_user' %}
+            <li class="{% if page_name == 'home' %}active{% endif %}"><a class="{% if page_name == 'home' %}active{% endif %}" href="/">Home</a></li>
+            <li class="{% if page_name == 'announcement' %}active{% endif %}"><a class="{% if page_name == 'announcement' %}active{% endif %}" href="#">Convocatorias</a></li>
+            <li class="{% if page_name == 'donnations' %}active{% endif %}"><a class="{% if page_name == 'donnations' %}active{% endif %}" href="#">Donaciones</a></li>
+            <li class="{% if page_name == 'company' %}active{% endif %}"><a class="{% if page_name == 'company' %}active{% endif %}" href="#">Empresa</a></li>
+
+          {% endif %}
+        </ul>
+      </nav>
+
+      <div class="content">
+        {% if not page_name == 'home' %}
+        <div class="back-btn">
+          <a onclick="goBack()"><i class="fa-sharp fa-solid fa-caret-left"></i></a>
+        </div>
+    
+        <script>
+          function goBack() {
+            window.history.back();
+          }
+          </script>
+        {% endif %}
+        {% block content %}{% endblock %}
+      </div>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-row">
+            <div class="footer-links">
+              <h4>Dreams Bank</h4>
+
+              <ul>
+                <li><a href="#">Nosotros</a></li>
+                <li><a href="#">Otros módulos</a></li>
+                <li><a href="#">Políticas de privacidad</a></li>
+                <li><a href="#">Afíliate</a></li>
+              </ul>
+            </div>
+            <div class="footer-links">
+              <h4>Ayuda</h4>
+
+              <ul>
+                <li><a href="#">Preguntas fracuentes</a></li>
+                <li><a href="#">Soporte técnico</a></li>
+                <li><a href="#">Código abierto</a></li>
+                <li><a href="#">Nuestro equipo</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-links">
+              <h4>Más opciones</h4>
+
+              <ul>
+                <li><a href="#">Usuarios</a></li>
+                <li><a href="#">Convocatorias</a></li>
+                <li><a href="#">Registra tu empresa</a></li>
+                <li><a href="#">Tu perfil</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-links">
+              <h4>Síguenos</h4>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

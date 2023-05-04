@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <title>{% block title %}Título de la página{% endblock %}</title>
+    {% block head %}
+    <link
+      rel="stylesheet"
+      href="{% static 'css/registration/signup_style.css' %}"
+    />
+    {% endblock %}
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="welcome-screen-container">
+        <h1>Knowledge Projects</h1>
+        <p>"Haz tus sueños realidad y ayuda a los demás a cumplir los suyos"</p>
+      </div>
+      <div class="form-container">
+        <div class="signup-container">
+          <h2>Nuevo Usuario</h2>
+          <form id="formulario" class="form" method="POST">
+            {% csrf_token %}
+            <p>
+              <label for="fullname">NOMBRE COMPLETO</label>
+              <input
+                class="input"
+                placeholder="Ingresa tu nombre completo"
+                type="text"
+                name="fullname"
+                id="fullname"
+              />
+            </p>
+            <p>
+              <label for="user_cc">CÉDULA</label>
+              <input
+                class="input"
+                placeholder="Ingresa tu documento de identidad civil"
+                type="text"
+                name="user_cc"
+                id="user_cc"
+              />
+            </p>
+            <p>
+              <label for="email">EMAIL</label>
+              <input
+                class="input"
+                placeholder="Ingresa el correo electrónico de tu preferencia"
+                type="email"
+                name="email"
+                id="email"
+              />
+            </p>
+            <p>
+              <label for="phone">TELÉFONO</label>
+              <input
+                class="input"
+                placeholder="Ingresa tu número telefónico"
+                type="text"
+                name="phone"
+                id="phone"
+              />
+            </p>
+            <p>
+              <label for="birthdate">FECHA DE NACIMIENTO</label>
+              <input
+                class="input"
+                placeholder="(dd : mm : aa)"
+                type="date"
+                name="birthdate"
+                id="birthdate"
+              />
+            </p>
+            <p>
+              <label for="password">CONTRASEÑA</label>
+              <input
+                class="input"
+                placeholder="Crea tu propia contraseña"
+                type="password"
+                name="password"
+                id="password"
+              />
+            </p>
+            <p>
+              <label for="confirm_password">CONFIRMAR CONTRASEÑA</label>
+              <input
+                class="input"
+                placeholder="Digita la misma contraseña"
+                type="password"
+                name="confirm_password"
+                id="confirm_password"
+              />
+            </p>
+          </form>
+          <div class="options">
+            <button id="terminar" type="button" class="btn btn-signup">
+              Terminar
+            </button>
+            <script>
+              var btnTerminar = document.getElementById("terminar");
+              var miFormulario = document.getElementById("formulario");
+
+              btnTerminar.addEventListener("click", function () {
+                miFormulario.submit();
+              });
+            </script>
+            <button id="cancelar" class="btn btn-cancel">Cancelar</button>
+            <script>
+              document
+                .getElementById("cancelar")
+                .addEventListener("click", function () {
+                  window.history.back();
+                });
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

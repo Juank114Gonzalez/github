@@ -1,0 +1,124 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>{% block title %}Título de la página{% endblock %}</title>
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/base_style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/projects/requirements_project_style.css' %}"
+    />
+    {% endblock %}
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="content">
+        <div class="welcome-screen-container">
+          <div class="message">
+            <h2>Agrega recursos</h2>
+            <p>Solicita un recurso que necesites para uno de tus proyectos</p>
+          </div>
+          <div class="resourses-list">
+            <h3>Tus recursos:</h3>
+            <ul>
+              {% for requirement in requirements %}
+              <li>
+                <div class="resourse-item">
+                  <h4>{{requirement.resource_id.name}}</h4>
+                  <p>{{requirement.objective}}</p>
+                  <div class="options">
+                    <i class="fa-solid fa-pen-to-square" id="edit"></i>
+                    <i class="fa-sharp fa-solid fa-trash" id="delete"></i>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="form-container">
+          <h2>AGREGA UN RECURSO</h2>
+          <div class="signup-container">
+            <form id="formulario" class="form" method="POST" action="{% url 'project-create-requirements' project.id_project %}">
+              {% csrf_token %}
+              <label for="format">RECURSO</label>
+              <div class="select">
+                <select name="format" id="format" required>
+                  <option selected disabled>Selecciona un recurso</option>
+                  {% for resourse in resourses %}
+                  <option name="resourse" value="{{resourse.id_resource}}">
+                    {{resourse.name}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <p>
+                <label for="objective">OBJETIVO</label>
+                <input
+                  class="input"
+                  id="objective"
+                  name="objective"
+                  placeholder="Ingresa un valor objetivo para el recurso"
+                  type="number"
+                  step="any"
+                  min="0"
+                  max="100"
+                />
+              </p>
+            </form>
+            <div class="options">
+              <button id="terminar" type="submit" class="btn btn-add">
+                Agregar
+              </button>
+              <script>
+                var btnTerminar = document.getElementById("terminar");
+                var miFormulario = document.getElementById("formulario");
+
+                btnTerminar.addEventListener("click", function () {
+                  miFormulario.submit();
+                });
+              </script>
+              <button id="cancelar" class="btn btn-finish">Terminar</button>
+              <script>
+                document
+                  .getElementById("cancelar")
+                  .addEventListener("click", function () {
+                    window.location.href = "/";
+                  });
+              </script>
+            </div>
+          </div>
+          <div class="resourses-list-responsive">
+            <h3>Tus recursos:</h3>
+            <ul>
+              {% for requirement in requirements %}
+              <li>
+                <div class="resourse-item">
+                  <h4>{{requirement.resource_id.name}}</h4>
+                  <p>{{requirement.objective}}</p>
+                  <div class="options">
+                    <i class="fa-solid fa-pen-to-square" id="edit"></i>
+                    <i class="fa-sharp fa-solid fa-trash" id="delete"></i>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}
